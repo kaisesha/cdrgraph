@@ -1,0 +1,51 @@
+PlaceID,Name,Address,City,State,Country,Alcohol,Smoking_Area,Dress_Code,Price
+132609,Pollo_Frito_Buenos_Aires,tampico,victoria,Tamaulipas,Mexico,No_Alcohol_Served,not permitted,informal,low
+132613,carnitas_mata,lic. Emilio portes gil,victoria,Tamaulipas,Mexico,No_Alcohol_Served,permitted,informal,medium
+132630,palomo tec,blvrd emilio portes gil,victoria,tamaulipas,Mexico,No_Alcohol_Served,none,informal,low
+132667,little pizza Emilio Portes Gil,calle emilio portes gil,victoria ,tamaulipas,Mexico,No_Alcohol_Served,none,informal,low
+132732,Taqueria EL amigo ,Calle Mezquite Fracc Framboyanes,Cd Victoria,Tamaulipas,Mexico,No_Alcohol_Served,none,casual,low
+132755,La Estrella de Dimas,Av. de los Pintores,San Luis Potosi,S.L.P.,Mexico,No_Alcohol_Served,none,informal,medium
+132766,Mikasa,Himno nacional esq. Blvd. Juarez,Cuernavaca,Morelos,Mexico,Wine-Beer,none,informal,medium
+132767,Restaurant Familiar El Chino,Paseo de las Fuentes,Jiutepec,Morelos,Mexico,Wine-Beer,permitted,casual,medium
+132768,Mariscos Tia Licha,avenida salvador montiel ,cuernavaca,morelos,mexico,No_Alcohol_Served,not permitted,casual,medium
+132773,El cotorreo,Emiliano Zapata Col. Tres de Mayo,Cuernavaca,Morelos,Mexico,Wine-Beer,permitted,informal,low
+132825,puesto de tacos,esquina santos degollado y leon guzman,s.l.p.,s.l.p.,mexico,No_Alcohol_Served,none,informal,low
+132854,Sirlone,carr. mexico,San Luis Potosi,San Luis Potosi,Mexico,Wine-Beer,none,informal,medium
+132856,Unicols Pizza,Plaza del Carmen,San Luis Potosi,San Luis Potosi,Mexico,Wine-Beer,none,informal,low
+132858,Hamburguesas Valle Dorado,Av. Coral,San Luis Potosi,San Luis Potosi,Mexico,No_Alcohol_Served,none,informal,low
+132861,Carls Jr,Av. V. Carranza,San Luis Potosi,San Luis Potosi,Mexico,No_Alcohol_Served,not permitted,informal,medium
+132862,La Posada del Virrey,Av. V. Carranza,San Luis Potosi,San Luis Potosi,Mexico,Wine-Beer,none,casual,high
+132870,Tortas y hamburguesas el gordo,Ricardo B. Anaya,San Luis Potosi,San Luis Potosi,Mexico,No_Alcohol_Served,not permitted,informal,low
+132885,Hamburguesas saul,Av. Saan Luis enttre moctezuma y salinas,San Luis Potosi,San Luis Potosi,mexico,No_Alcohol_Served,none,informal,low
+132937,rockabilly ,agustin de iturbide,san luis potosi,san luis potosi,mexico,Full_Bar,section,informal,low
+132954,la parroquia,venustiano carranza,san luis potosi,san luis potosi,Mexico,No_Alcohol_Served,not permitted,informal,medium
+132955,emilianos,venustiano carranza,san luis potos,mexico,Mexico,Wine-Beer,none,informal,low
+134983,Restaurant and Bar and Clothesline Carlos N Charlies,Domingo 10 711 El Empleado,Cuernavaca,Morelos,Mexico,Full_Bar,section,informal,high
+134986,Restaurant Las Mananitas,Ricardo Linares 107,Cuernavaca,Morelos,Mexico,Wine-Beer,none,formal,high
+134999,Kiku Cuernavaca,Revolucion,Cuernavaca,Morelos,Mexico,No_Alcohol_Served,none,informal,medium
+135018,El Oceano Dorado,Libramiento Burgos Colonia Las Animas,Cuernavaca,Morelos,Mexico,Full_Bar,permitted,informal,medium
+135025,El Rincon de San Francisco,1a. de Lozada 1,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135026,la Cantina,Capitan Caldera No. 420 Tequisqueapan,San Luis Potosi,SLP,Mexico,Full_Bar,none,informal,high
+135027,Restaurant Orizatlan,Pascual M. Hernandez 240,San Luis Potosi,SLP,Mexico,Wine-Beer,none,informal,medium
+135028,La Virreina,Av. Carranza 830,San Luis Potosi,SLP,Mexico,Wine-Beer,none,informal,medium
+135032,Cafeteria y Restaurant El Pacifico,Constitucion 200 Centro,San Luis Potosi,SLP,Mexico,Wine-Beer,section,informal,medium
+135034,Michiko Restaurant Japones,Cordillera de Los Alpes 160 Lomas 2 Seccion,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135041,Luna Cafe,Francisco I. Madero 215,San Luis Potosi,SLP,Mexico,Wine-Beer,none,informal,medium
+135042,Restaurant Oriental Express,Tangamanga 7 Tangamanga,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135043,pizza clasica,524 Soledad de Graciano Sanchez,Soledad,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135046,Restaurante El Reyecito,Agricultura 595 del Valle,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135048,Restaurante Bar Fu-hao,Jesus Goytortua 390 Tangamanga,San Luis Potosi,SLP,Mexico,Wine-Beer,none,informal,high
+135049,Restaurante de Mariscos la Langosta,Cordillera de Los Alpes 675 Loma Verde,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135052,La Cantina Restaurante,Ignacio Aldama 300 Centro,San Luis Potosi,SLP,Mexico,Full_Bar,none,informal,high
+135054,Restaurante y Pescaderia Tampico,Ricardo B. Anaya 2700 Estrella de Oriente,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,high
+135057,El Herradero Restaurante and Bar,Costado Sur Central Camionera Km 2,San Luis Potosi,SLP,Mexico,Wine-Beer,section,informal,medium
+135059,Restaurant Bar Hacienda los Martinez,Santos Degollado 745 los Alamitos,San Luis Potosi,SLP,Mexico,Wine-Beer,section,informal,medium
+135060,Restaurante Marisco Sam,Ignacio Allende 785 Centro,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,none,informal,medium
+135069,Abondance Restaurante Bar,Industrias 908 Valle Dorado,San Luis Potosi,SLP,Mexico,Wine-Beer,none,informal,low
+135071,Restaurante la Cantina,De La Estrella 2005 Estrella de Oriente,San Luis Potosi,SLP,Mexico,Full_Bar,section,informal,medium
+135073,Restaurante Bar El Gallinero,Pascual M. Hernandez 210 Centro,San Luis Potosi,SLP,Mexico,Wine-Beer,section,informal,high
+135074,Restaurante la Parroquia Potosina,Venustiano Carranza 303 Centro,San Luis Potosi,SLP,Mexico,Wine-Beer,section,informal,high
+135085,Tortas Locas Hipocampo,Venustiano Carranza 719 Centro,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,not permitted,informal,medium
+135086,Mcdonalds Parque Tangamanga,Lateral Salvador Nava Martinez 3145,San Luis Potosi,SLP,Mexico,No_Alcohol_Served,not permitted,informal,medium
+135088,Cafeteria cenidet,Interior Internado Palmira SN,Cuernavaca,Morelos,Mexico,No_Alcohol_Served,not permitted,informal,low
+135106,El Rinc=n de San Francisco,Universidad 169,San Luis Potosi,San Luis Potosi,Mexico,Wine-Beer,only at bar,informal,medium

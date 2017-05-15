@@ -1,0 +1,50 @@
+UserID,Interest,Personality,Transport,Marital_Status,Birth_Year,Religion,Smoker,Drink_Level,Dress_Pref,Hijos,Ambience,Activity,Budget
+U1001,variety,thrifty-protector,on foot,single,1989,none,false,abstemious,informal,independent,family,student,medium
+U1002,technology,hunter-ostentatious,public,single,1990,Catholic,false,abstemious,informal,independent,family,student,low
+U1003,none,hard-worker,public,single,1989,Catholic,false,social drinker,formal,independent,family,student,low
+U1004,variety,hard-worker,public,single,1940,none,false,abstemious,informal,independent,family,professional,medium
+U1005,none,thrifty-protector,public,single,1992,Catholic,false,abstemious,no preference,independent,family,student,medium
+U1006,variety,hard-worker,car owner,single,1989,none,true,social drinker,no preference,independent,friends,student,medium
+U1007,variety,thrifty-protector,public,single,1989,Catholic,false,casual drinker,informal,independent,solitary,student,low
+U1008,technology,hard-worker,public,single,1989,Catholic,false,social drinker,formal,independent,solitary,student,low
+U1009,variety,thrifty-protector,on foot,single,1991,Catholic,false,abstemious,formal,kids,family,student,medium
+U1010,technology,hard-worker,car owner,married,1987,none,false,social drinker,no preference,kids,friends,student,medium
+U1011,variety,hard-worker,public,single,1989,Catholic,false,abstemious,no preference,independent,family,student,medium
+U1012,technology,hard-worker,public,single,1988,Catholic,false,casual drinker,formal,independent,family,student,medium
+U1013,retro,thrifty-protector,public,widow,1982,none,false,abstemious,no preference,independent,friends,professional,medium
+U1014,none,hard-worker,public,single,1990,Catholic,false,abstemious,?,independent,friends,student,medium
+U1015,technology,thrifty-protector,public,single,1989,Catholic,true,social drinker,informal,independent,family,student,medium
+U1016,eco-friendly,thrifty-protector,on foot,single,1991,Catholic,false,casual drinker,informal,independent,friends,student,medium
+U1017,retro,hunter-ostentatious,public,single,1991,none,false,casual drinker,formal,?,family,professional,medium
+U1018,technology,thrifty-protector,public,single,1989,Christian,true,casual drinker,formal,independent,friends,student,low
+U1019,variety,thrifty-protector,public,single,1989,Catholic,false,casual drinker,no preference,independent,family,student,medium
+U1020,technology,hard-worker,public,single,1982,Catholic,false,abstemious,no preference,independent,friends,professional,medium
+U1021,none,hard-worker,car owner,single,1984,Catholic,false,social drinker,no preference,dependent,family,student,medium
+U1022,variety,hard-worker,car owner,single,1990,Catholic,false,casual drinker,formal,independent,family,student,medium
+U1023,none,hard-worker,car owner,single,1988,Catholic,false,casual drinker,informal,independent,friends,student,low
+U1025,none,thrifty-protector,public,single,1990,Catholic,false,social drinker,no preference,?,family,student,medium
+U1026,technology,hunter-ostentatious,public,single,1989,Catholic,false,abstemious,formal,independent,family,student,medium
+U1028,variety,hard-worker,public,single,1989,Christian,false,abstemious,no preference,independent,family,student,medium
+U1029,variety,conformist,public,single,1990,Catholic,true,casual drinker,formal,independent,family,student,low
+U1030,eco-friendly,hard-worker,on foot,single,1991,Catholic,false,casual drinker,formal,independent,family,student,medium
+U1031,none,hard-worker,?,married,1992,Catholic,false,abstemious,informal,kids,solitary,unemployed,medium
+U1032,variety,hard-worker,public,single,1989,Catholic,false,abstemious,formal,independent,family,student,medium
+U1033,none,hard-worker,on foot,single,1991,none,false,social drinker,no preference,?,family,student,low
+U1034,technology,thrifty-protector,public,single,1990,Catholic,false,casual drinker,informal,independent,family,student,medium
+U1035,variety,hunter-ostentatious,car owner,single,1985,none,true,casual drinker,no preference,independent,friends,student,medium
+U1036,none,hard-worker,public,single,1991,Catholic,false,social drinker,informal,independent,family,student,medium
+U1037,variety,thrifty-protector,public,single,1990,Catholic,false,social drinker,no preference,independent,family,student,low
+U1038,variety,thrifty-protector,public,single,1930,Catholic,true,social drinker,no preference,independent,family,student,low
+U1039,none,hard-worker,?,single,1989,none,false,social drinker,no preference,independent,friends,student,medium
+U1040,none,thrifty-protector,public,single,1994,Catholic,false,abstemious,no preference,independent,friends,student,medium
+U1041,eco-friendly,hunter-ostentatious,on foot,single,1985,Catholic,false,abstemious,no preference,independent,friends,professional,medium
+U1042,technology,thrifty-protector,car owner,single,1943,Christian,false,abstemious,no preference,independent,family,student,high
+U1043,technology,hard-worker,public,single,1989,none,false,abstemious,no preference,independent,solitary,student,medium
+U1044,variety,thrifty-protector,car owner,married,1969,Catholic,true,social drinker,informal,kids,family,professional,medium
+U1045,technology,thrifty-protector,car owner,single,1991,Mormon,false,casual drinker,elegant,independent,friends,student,high
+U1046,retro,hard-worker,car owner,single,1990,Catholic,false,social drinker,no preference,independent,friends,student,medium
+U1047,retro,thrifty-protector,public,single,1992,Catholic,false,abstemious,no preference,independent,family,student,medium
+U1050,variety,hard-worker,car owner,single,1989,none,false,social drinker,no preference,independent,family,student,medium
+U1051,variety,thrifty-protector,public,single,1979,none,false,casual drinker,no preference,independent,family,professional,medium
+U1052,none,conformist,on foot,single,1990,Catholic,true,social drinker,no preference,independent,family,student,low
+U1053,variety,thrifty-protector,public,single,1990,Catholic,false,casual drinker,informal,independent,family,student,low
