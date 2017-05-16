@@ -1,0 +1,323 @@
+= Multidimensional Approach To Recommender Systems
+:neo4j-version: 3.1.4
+:author: Kamal Murthy
+:style: 
+
+== Introduction
+When it comes to recommender systems, I always remember the title song of 80's sitcom, "Cheers". Here is how:
+
+"You wanna go where people know, people are all the same" - Content-based
+
+"You wanna be where you can see, our troubles are all the same" - Colloborative-filtering
+
+"Taking a break from all your worries, sure would help a lot. Wouldn't you like to get away?" ....Where, with whom? - Context-Aware.
+
+Here I like to present a restaurant recommendation based on contextual information using Neo4j.
+
+== What is Context?
+
+Context is any information that can be used to characterize the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and an application, including the user and applications themselves (AK Dey & GD Abowd  - ACM Conference on Human Factors in Computer Systems (CHI 2000), Vol.5/Iss.1, pp.4-7, 2001).
+
+Most common types of context are Identity ('who'), Acivity ('what'), Time ('when'), and location ('where') and one can use this information to determine 'why' the situation is occuring.
+
+
+Traditional recommender systems use two entities (two dimensional) users and items. This recommendation can be made more personalized by using a multidimensional approach to include contextual information.
+
+== Apply to Restaurant Recommendation
+Imported restaurant and consumer data (that relates to Mexico) from https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data. 
+
+User data has location, habits (like smoking, drinking), marital status, cuisine, budget, and many other pieces of information. For users, we can take each context (like smoking, cuisine, budget) as one dimension.
+
+image::https://cloud.githubusercontent.com/assets/21182456/26038102/5973f520-38b5-11e7-9c6d-85b91fa95fc6.png[]
+
+Data on restaurants includes location, cuisine, smoking, alocohol, price and other information. For restaurants too we will have multiple dimensions to offer a better choice of restaurants based on user preferences.
+
+A pictorial description of a three dimensional approach is shown below:
+
+image::https://cloud.githubusercontent.com/assets/21182456/26029637/fedfa15c-37ee-11e7-918c-cb7ae1b62915.png[]
+
+The three dimensions in the user cube are user,smoking,cuisine and for the restaurant cube they are restaurant, smoking, cuisine. The colored slice of the user cube represents the users who like same cuisine with varying presferences for smoking. These choices will then be used to select restaurants that match the selected user choices. The colored slice of the restaurant cube presents the restaurants that match the user selected choices. 
+
+Same approach is applicable to even higher dimensions.
+
+== Data Model
+image::https://cloud.githubusercontent.com/assets/21182456/26029641/1d2ba07a-37ef-11e7-867d-c8a133df4563.PNG[]
+
+== Metadata
+image::https://cloud.githubusercontent.com/assets/21182456/26029646/3f2e66da-37ef-11e7-831e-e9be1b9b0dc7.PNG[]
+
+== Setup
+Four data files:
+Users_50.csv (selected 50 users)
+UCuisine.csv (users/cuisine)
+Restaurants.csv
+RestCuisine.csv (restaurants/cuisine)
+
+
+Cypher queries to setup the database
+
+//hide
+//setup
+
+[source,cypher]
+----
+CREATE CONSTRAINT ON ( rest:Restaurant ) ASSERT rest.pid IS UNIQUE;
+CREATE CONSTRAINT ON ( company:Company ) ASSERT company.name IS UNIQUE;
+CREATE CONSTRAINT ON ( usr:User ) ASSERT usr.UserID IS UNIQUE;
+
+//Import users.............
+
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:/Users_50.csv" As line
+WITH line
+
+MERGE (company:Company {name: "Ameyasoft"})
+MERGE (usr:User {uid: line.UserID})
+CREATE (company)-[:USER_PROFILE]->(usr)
+
+CREATE (prsnl:Personal {name: "Personal"})
+CREATE (usr)-[:PERSONAL]->(prsnl)
+
+CREATE (intrst:Interest {attr9: line.Interest})
+CREATE (prsnl)-[:INTEREST]->(intrst)
+
+CREATE (prsnlt:Persnlty {attr10: line.Personality})
+CREATE (prsnl)-[:PERSONALITY]->(prsnlt)
+
+CREATE (trnsp:Transp {attr5: line.Transport})
+CREATE (prsnl)-[:TRANSPORT]->(trnsp)
+
+CREATE (marrd:Married {attr6: line.Marital_Status})
+CREATE (prsnl)-[:MARITAL_STATUS]->(marrd)
+
+
+CREATE (brthyr:Byear {attr8: line.Birth_Year})
+CREATE (prsnl)-[:BIRTH_YEAR]->(brthyr)
+
+
+CREATE (relgn:Religion {attr11: line.Religion})
+CREATE (prsnl)-[:RELIGION]->(relgn)
+
+
+CREATE (habit:Habit {name: "Habits"})
+CREATE (usr)-[:HABITS]->(habit)
+
+CREATE (smkr:Smoker {attr1: line.Smoker})
+CREATE (habit)-[:SMOKER]->(smkr)
+
+CREATE (drnk:Drink {attr2: line.Drink_Level})
+CREATE (habit)-[:DRINK_LEVEL]->(drnk)
+
+CREATE (dress:Dress {attr3: line.Dress_Pref})
+CREATE (habit)-[:DRESS]->(dress)
+
+CREATE (hijos:Hijos {attr7: line.Hijos})
+CREATE (habit)-[:HIJOS]->(hijos)
+
+CREATE (ambnc:Ambnce {attr4: line.Ambience})
+CREATE (habit)-[:AMBIENCE]->(ambnc)
+
+CREATE (actv:Activity {attr12: line.Activity})
+CREATE (habit)-[:USER_PROFILE]->(actv)
+
+CREATE (budgt:Budget {attr13: line.Budget})
+CREATE (habit)-[:BUDGET]->(budgt)
+
+CREATE (m:Cuisine {name: line.UserID})
+CREATE (usr)-[:CUISINE]->(m)
+
+;
+
+//Import user choices of cuisines.......
+
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:/UCuisine.csv" As line
+WITH line
+
+CREATE (f:Food {name: line.Rcuisine})
+WITH line, f
+
+MATCH (n:User {uid:line.userID})-[:CUISINE]->(m:Cuisine {name: 'Cuisine'})
+MERGE (n)-[:CUISINE]->(m)-[:TYPE]->(f)
+;
+
+//Import restaurants.............
+
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:/Restaurants.csv" As line
+WITH line
+
+MERGE (company:Company {name: "Ameyasoft"})
+MERGE (rest:Restaurant {pid: toInteger(line.PlaceID), name: line.Name})
+CREATE (company)-[:RESTAURANT]->(rest)
+
+CREATE (addr:Addrs {street: line.Address, city: line.City, state: line.State, zip: line.Zip, country: line.Country})
+CREATE (rest)-[:ADDRESS]->(addr)
+
+CREATE (featrs:Features {alcohol: line.Alcohol, smoking: line.Smoking_Area, dress: line.Dress_Code, price: line.Price, ambience: line.Ambience})
+CREATE (rest)-[:FEATURES]->(featrs)
+
+;
+
+//Import restaurant cuisines.......
+
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:/RestCuisine.csv" As line
+WITH line
+
+MATCH (n:Restaurant {pid: toInteger(line.PlaceID)})
+MERGE (n)-[:REST_CUISINE]->(cuse:Cusine {name: line.Cuisine});
+
+
+----
+
+I use this query for better visualization both USER_PROFILE and RESTAURANT paths:
+
+[source,cypher]
+----
+
+MATCH (c)-[r:USER_PROFILE|RESTAURANT]->(n)-[]-(p)
+WHERE n.uid IN['U1001', 'U1002', 'U1003'] or  n.pid IN [132609, 132613, 132630]
+RETURN c, n, p LIMIT 20;
+
+----
+
+image::https://cloud.githubusercontent.com/assets/21182456/26045221/091a7baa-38fe-11e7-8396-21f181b1a808.png[]
+
+Left half is Restaurant and the right half is User Profile.
+
+//graph
+
+== Recommend Restaurants Based On User Preferences
+
+
+[blue]#**Three preferences: Mexican food, non-smoking, and medium priced.**#
+
+
+[source,cypher]
+----
+
+//Users with selected choices..............
+
+MATCH (c)-[]->(n)-[:CUISINE]->(r)-[:LIKES]->(t:Food {name: "Mexican"})
+WITH COLLECT (n) as nodes, t
+UNWIND nodes as n1
+
+MATCH (c)-[]->(n1)-[:HABITS]->(q)-[:SMOKER]->(v:Smoker {attr1: "false"})
+WITH COLLECT (n1) as nodes, t, v
+UNWIND nodes as n2
+
+MATCH (c)-[]->(n2)-[:HABITS]->(q)-[:BUDGET]->(v1:Budget {attr13: "medium"})
+WITH v1, t, v MATCH (c)-[]->(n)-[:CUISINE]->(r)-[:LIKES]->(t:Food {name: "Mexican"})
+WITH COLLECT (n) as nodes, t
+UNWIND nodes as n1
+
+MATCH (c)-[]->(n1)-[:HABITS]->(q)-[:SMOKER]->(v:Smoker {attr1: "false"})
+WITH COLLECT (n1) as nodes, t, v
+UNWIND nodes as n2
+
+MATCH (c)-[]->(n2)-[:HABITS]->(q)-[:BUDGET]->(v1:Budget {attr13: "medium"})
+WITH v1, t
+
+//WITH v1, t, v1, n2
+//RETURN n2.uid as User, t.name as Cuisine, v.attr1 as Smoker, v1.attr13 as Budget;
+
+
+// Find the restaurants that match the user preferences......
+
+MATCH (c)-[]->(n2)-[:REST_CUISINE]->(p:Cusine {name: t.name})
+WITH COLLECT(n2) as pn, v1
+UNWIND pn as n3
+MATCH (c)-[]->(n3)-[:FEATURES]->(q1:Features {price: v1.attr13, smoking: "none"})
+WITH COLLECT(n3) as pn
+
+UNWIND pn as n4
+WITH DISTINCT n4
+MATCH (c)-[]->(n4)-[:ADDRESS]-(k)
+RETURN n4.name as Restaurant,  "Mexican" as Cuisine, "Medium" as Price,
+k.city as City, k.state as State, k.country as Country;
+
+----
+
+//graph_result
+
+image:https://cloud.githubusercontent.com/assets/21182456/26083994/c770ae5a-398d-11e7-98fc-3445805c0502.png[]image:https://cloud.githubusercontent.com/assets/21182456/26083996/cec737f0-398d-11e7-9fd9-4fb2b4c5b24b.png[]
+
+
+
+[blue]#**Four preferences: Japanese food, non-smoking, medium priced, and ambience (friends).**#
+
+[source,cypher]
+----
+
+MATCH (c)-[]->(n)-[:CUISINE]->(r)-[:LIKES]->(t:Food {name: "Japanese"})
+WITH COLLECT (n) as nodes, t
+UNWIND nodes as n1
+
+MATCH (c)-[]->(n1)-[:HABITS]->(q)-[:SMOKER]->(v:Smoker {attr1: "false"})
+WITH COLLECT (n1) as nodes, t, v
+UNWIND nodes as n2
+
+MATCH (c)-[]->(n2)-[:HABITS]->(q)-[:BUDGET]->(v1:Budget {attr13: "medium"})
+WITH COLLECT (n2) as nodes, t, v, v1
+UNWIND nodes as n3
+
+MATCH (c)-[]->(n3)-[:HABITS]->(q)-[:AMBIENCE]->(v2:Ambnce {attr4: "friends"})
+WITH COLLECT (n3) as nodes, t, v, v1, v2
+UNWIND nodes as n4
+
+WITH t, v1
+
+//WITH v1, t, v1, v2, n4MATCH (c)-[]->(n)-[:CUISINE]->(r)-[:LIKES]->(t:Food {name: "Japanese"})
+WITH COLLECT (n) as nodes, t
+UNWIND nodes as n1
+
+MATCH (c)-[]->(n1)-[:HABITS]->(q)-[:SMOKER]->(v:Smoker {attr1: "false"})
+WITH COLLECT (n1) as nodes, t, v
+UNWIND nodes as n2
+
+MATCH (c)-[]->(n2)-[:HABITS]->(q)-[:BUDGET]->(v1:Budget {attr13: "medium"})
+WITH COLLECT (n2) as nodes, t, v, v1
+UNWIND nodes as n3
+
+MATCH (c)-[]->(n3)-[:HABITS]->(q)-[:AMBIENCE]->(v2:Ambnce {attr4: "friends"})
+WITH COLLECT (n3) as nodes, t, v, v1, v2
+UNWIND nodes as n4
+
+WITH t, v1
+
+//WITH v, t, v1, v2, n4
+//RETURN n4.uid as User, t.name as Cuisine, v.attr1 as Smoker, v1.attr13 as Budget, v2.attr4 as Ambience;
+
+
+MATCH (c)-[]->(n2)-[:REST_CUISINE]->(p:Cusine {name: t.name})
+WITH COLLECT(n2) as pn, v1
+UNWIND pn as n3
+MATCH (c)-[]->(n3)-[:FEATURES]->(q1:Features {price: v1.attr13, smoking: "none", ambience: "familiar"})
+WITH COLLECT(n3) as pn2
+
+UNWIND pn2 as n4
+WITH DISTINCT n4
+MATCH (c)-[]->(n4)-[:ADDRESS]-(k)
+
+RETURN n4.name as Restaurant, k.state as State;
+
+----
+
+image:https://cloud.githubusercontent.com/assets/21182456/26083796/a81da9b4-398c-11e7-8a97-f8e1978d5ccc.png[]image:https://cloud.githubusercontent.com/assets/21182456/26083799/ac3bdf34-398c-11e7-85a4-01b106dea03a.png[]
+
+
+
+== Conclusions...
+
+
+
+
+== Resources
+
+Datasets:
+
+https://github.com/kaisesha/cdrgraph/blob/master/RestCuisine.csv
+https://github.com/kaisesha/cdrgraph/blob/master/Restaurants.csv
+https://github.com/kaisesha/cdrgraph/blob/master/UCuisine.csv
+https://github.com/kaisesha/cdrgraph/blob/master/Users_50.csv
